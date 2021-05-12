@@ -1,0 +1,365 @@
+Iterations:        100
+Instructions:      16200
+Total Cycles:      3116
+Total uOps:        16400
+
+Dispatch Width:    6
+uOps Per Cycle:    5.26
+IPC:               5.20
+Block RThroughput: 31.0
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 1      1     0.25                        cmpl	$1, %esi
+ 1      1     1.00           *            movq	%rdi, -8(%rsp)
+ 1      1     1.00           *            movl	%esi, -12(%rsp)
+ 1      1     0.50                        jle	.LBB0_8
+ 1      0     0.17                        xorl	%eax, %eax
+ 1      1     0.25                        movl	%eax, %ecx
+ 1      5     0.50    *                   movl	-12(%rsp), %eax
+ 1      1     0.25                        movl	%eax, %edx
+ 1      1     0.25                        movl	%edx, %esi
+ 1      1     0.25                        movl	$1, %edi
+ 1      1     1.00           *            movq	%rsi, -24(%rsp)
+ 1      1     1.00           *            movq	%rcx, -32(%rsp)
+ 1      1     1.00           *            movq	%rdi, -40(%rsp)
+ 1      5     0.50    *                   movq	-40(%rsp), %rax
+ 1      5     0.50    *                   movq	-32(%rsp), %rcx
+ 1      0     0.17                        xorl	%edx, %edx
+ 1      1     0.25                        movl	%edx, %esi
+ 1      1     0.25                        movq	%rcx, %rdi
+ 1      1     0.25                        addq	$1, %rdi
+ 1      1     0.25                        movq	%rdi, %r8
+ 1      1     0.25                        andq	$3, %r8
+ 1      1     0.25                        cmpq	$3, %rcx
+ 1      1     1.00           *            movq	%rax, -48(%rsp)
+ 1      1     1.00           *            movq	%rcx, -56(%rsp)
+ 1      1     1.00           *            movq	%rdi, -64(%rsp)
+ 1      1     1.00           *            movq	%r8, -72(%rsp)
+ 1      1     1.00           *            movq	%rsi, -80(%rsp)
+ 1      1     0.50                        jb	.LBB0_5
+ 1      0     0.17                        xorl	%eax, %eax
+ 1      1     0.25                        movl	%eax, %ecx
+ 1      5     0.50    *                   movq	-64(%rsp), %rdx
+ 1      5     0.50    *                   movq	-72(%rsp), %rsi
+ 1      1     0.25                        subq	%rsi, %rdx
+ 1      1     1.00           *            movq	%rcx, -88(%rsp)
+ 1      1     1.00           *            movq	%rdx, -96(%rsp)
+ 1      5     0.50    *                   movq	-96(%rsp), %rax
+ 1      5     0.50    *                   movq	-88(%rsp), %rcx
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     0.50                        shlq	$8, %rdx
+ 1      5     0.50    *                   movq	-8(%rsp), %rsi
+ 1      1     0.25                        addq	%rdx, %rsi
+ 1      5     0.50    *                   movq	-48(%rsp), %rdx
+ 1      1     0.50                        shlq	$2, %rdx
+ 1      1     0.25                        addq	%rdx, %rsi
+ 1      5     0.50    *                   movl	(%rsi), %edi
+ 1      5     0.50    *                   movq	-48(%rsp), %rdx
+ 1      1     0.50                        shlq	$8, %rdx
+ 1      5     0.50    *                   movq	-8(%rsp), %r8
+ 1      1     0.25                        addq	%rdx, %r8
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     0.50                        shlq	$2, %rdx
+ 1      1     0.25                        addq	%rdx, %r8
+ 1      5     0.50    *                   movl	(%r8), %r9d
+ 1      1     1.00           *            movl	%r9d, (%rsi)
+ 1      1     1.00           *            movl	%edi, (%r8)
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     0.25                        orq	$1, %rdx
+ 1      1     0.25                        movq	%rdx, %rsi
+ 1      1     0.50                        shlq	$8, %rsi
+ 1      5     0.50    *                   movq	-8(%rsp), %r8
+ 1      1     0.25                        addq	%rsi, %r8
+ 1      5     0.50    *                   movq	-48(%rsp), %rsi
+ 1      1     0.50                        shlq	$2, %rsi
+ 1      1     0.25                        addq	%rsi, %r8
+ 1      5     0.50    *                   movl	(%r8), %edi
+ 1      5     0.50    *                   movq	-48(%rsp), %rsi
+ 1      1     0.50                        shlq	$8, %rsi
+ 1      5     0.50    *                   movq	-8(%rsp), %r10
+ 1      1     0.25                        addq	%rsi, %r10
+ 1      1     0.50                        shlq	$2, %rdx
+ 1      1     0.25                        addq	%rdx, %r10
+ 1      5     0.50    *                   movl	(%r10), %r9d
+ 1      1     1.00           *            movl	%r9d, (%r8)
+ 1      1     1.00           *            movl	%edi, (%r10)
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     0.25                        orq	$2, %rdx
+ 1      1     0.25                        movq	%rdx, %rsi
+ 1      1     0.50                        shlq	$8, %rsi
+ 1      5     0.50    *                   movq	-8(%rsp), %r8
+ 1      1     0.25                        addq	%rsi, %r8
+ 1      5     0.50    *                   movq	-48(%rsp), %rsi
+ 1      1     0.50                        shlq	$2, %rsi
+ 1      1     0.25                        addq	%rsi, %r8
+ 1      5     0.50    *                   movl	(%r8), %edi
+ 1      5     0.50    *                   movq	-48(%rsp), %rsi
+ 1      1     0.50                        shlq	$8, %rsi
+ 1      5     0.50    *                   movq	-8(%rsp), %r10
+ 1      1     0.25                        addq	%rsi, %r10
+ 1      1     0.50                        shlq	$2, %rdx
+ 1      1     0.25                        addq	%rdx, %r10
+ 1      5     0.50    *                   movl	(%r10), %r9d
+ 1      1     1.00           *            movl	%r9d, (%r8)
+ 1      1     1.00           *            movl	%edi, (%r10)
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     0.25                        orq	$3, %rdx
+ 1      1     0.25                        movq	%rdx, %rsi
+ 1      1     0.50                        shlq	$8, %rsi
+ 1      5     0.50    *                   movq	-8(%rsp), %r8
+ 1      1     0.25                        addq	%rsi, %r8
+ 1      5     0.50    *                   movq	-48(%rsp), %rsi
+ 1      1     0.50                        shlq	$2, %rsi
+ 1      1     0.25                        addq	%rsi, %r8
+ 1      5     0.50    *                   movl	(%r8), %edi
+ 1      5     0.50    *                   movq	-48(%rsp), %rsi
+ 1      1     0.50                        shlq	$8, %rsi
+ 1      5     0.50    *                   movq	-8(%rsp), %r10
+ 1      1     0.25                        addq	%rsi, %r10
+ 1      1     0.50                        shlq	$2, %rdx
+ 1      1     0.25                        addq	%rdx, %r10
+ 1      5     0.50    *                   movl	(%r10), %r9d
+ 1      1     1.00           *            movl	%r9d, (%r8)
+ 1      1     1.00           *            movl	%edi, (%r10)
+ 1      1     0.25                        addq	$4, %rcx
+ 1      1     0.25                        addq	$-4, %rax
+ 1      1     0.25                        cmpq	$0, %rax
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     1.00           *            movq	%rax, -96(%rsp)
+ 1      1     1.00           *            movq	%rdx, -88(%rsp)
+ 1      1     1.00           *            movq	%rcx, -80(%rsp)
+ 1      1     0.50                        jne	.LBB0_4
+ 1      5     0.50    *                   movq	-80(%rsp), %rax
+ 1      5     0.50    *                   movq	-72(%rsp), %rcx
+ 1      1     0.25                        cmpq	$0, %rcx
+ 1      1     1.00           *            movq	%rax, -104(%rsp)
+ 1      1     1.00           *            movq	%rcx, -112(%rsp)
+ 1      1     0.50                        je	.LBB0_7
+ 1      5     0.50    *                   movq	-112(%rsp), %rax
+ 1      5     0.50    *                   movq	-104(%rsp), %rcx
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     0.50                        shlq	$8, %rdx
+ 1      5     0.50    *                   movq	-8(%rsp), %rsi
+ 1      1     0.25                        addq	%rdx, %rsi
+ 1      5     0.50    *                   movq	-48(%rsp), %rdx
+ 1      1     0.50                        shlq	$2, %rdx
+ 1      1     0.25                        addq	%rdx, %rsi
+ 1      5     0.50    *                   movl	(%rsi), %edi
+ 1      5     0.50    *                   movq	-48(%rsp), %rdx
+ 1      1     0.50                        shlq	$8, %rdx
+ 1      5     0.50    *                   movq	-8(%rsp), %r8
+ 1      1     0.25                        addq	%rdx, %r8
+ 1      1     0.25                        movq	%rcx, %rdx
+ 1      1     0.50                        shlq	$2, %rdx
+ 1      1     0.25                        addq	%rdx, %r8
+ 1      5     0.50    *                   movl	(%r8), %r9d
+ 1      1     1.00           *            movl	%r9d, (%rsi)
+ 1      1     1.00           *            movl	%edi, (%r8)
+ 1      1     0.25                        addq	$1, %rcx
+ 1      1     0.25                        addq	$-1, %rax
+ 1      1     0.25                        cmpq	$0, %rax
+ 1      1     1.00           *            movq	%rax, -112(%rsp)
+ 1      1     1.00           *            movq	%rcx, -104(%rsp)
+ 1      1     0.50                        jne	.LBB0_6
+ 1      5     0.50    *                   movq	-48(%rsp), %rax
+ 1      1     0.25                        addq	$1, %rax
+ 1      5     0.50    *                   movq	-56(%rsp), %rcx
+ 1      1     0.25                        addq	$1, %rcx
+ 1      5     0.50    *                   movq	-24(%rsp), %rdx
+ 1      1     0.25                        cmpq	%rdx, %rax
+ 1      1     1.00           *            movq	%rcx, -32(%rsp)
+ 1      1     1.00           *            movq	%rax, -40(%rsp)
+ 1      1     0.50                        jne	.LBB0_2
+ 3      7     1.00                  U     retq
+
+
+Resources:
+[0]   - SKXDivider
+[1]   - SKXFPDivider
+[2]   - SKXPort0
+[3]   - SKXPort1
+[4]   - SKXPort2
+[5]   - SKXPort3
+[6]   - SKXPort4
+[7]   - SKXPort5
+[8]   - SKXPort6
+[9]   - SKXPort7
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
+ -      -     22.00  20.01  25.35  25.36  31.00  21.01  21.98  25.29  
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
+ -      -     0.33   0.01    -      -      -     0.32   0.34    -     cmpl	$1, %esi
+ -      -      -      -      -      -     1.00    -      -     1.00   movq	%rdi, -8(%rsp)
+ -      -      -      -     0.02   0.01   1.00    -      -     0.97   movl	%esi, -12(%rsp)
+ -      -     0.39    -      -      -      -      -     0.61    -     jle	.LBB0_8
+ -      -      -      -      -      -      -      -      -      -     xorl	%eax, %eax
+ -      -     0.62   0.01    -      -      -     0.37    -      -     movl	%eax, %ecx
+ -      -      -      -     0.66   0.34    -      -      -      -     movl	-12(%rsp), %eax
+ -      -      -     0.65    -      -      -     0.34   0.01    -     movl	%eax, %edx
+ -      -     0.30   0.37    -      -      -     0.02   0.31    -     movl	%edx, %esi
+ -      -      -     0.36    -      -      -     0.64    -      -     movl	$1, %edi
+ -      -      -      -      -      -     1.00    -      -     1.00   movq	%rsi, -24(%rsp)
+ -      -      -      -     0.01   0.01   1.00    -      -     0.98   movq	%rcx, -32(%rsp)
+ -      -      -      -      -     0.01   1.00    -      -     0.99   movq	%rdi, -40(%rsp)
+ -      -      -      -     0.37   0.63    -      -      -      -     movq	-40(%rsp), %rax
+ -      -      -      -     0.63   0.37    -      -      -      -     movq	-32(%rsp), %rcx
+ -      -      -      -      -      -      -      -      -      -     xorl	%edx, %edx
+ -      -     0.35   0.02    -      -      -     0.61   0.02    -     movl	%edx, %esi
+ -      -     0.32   0.61    -      -      -     0.04   0.03    -     movq	%rcx, %rdi
+ -      -     0.01   0.02    -      -      -     0.62   0.35    -     addq	$1, %rdi
+ -      -     0.01   0.64    -      -      -     0.04   0.31    -     movq	%rdi, %r8
+ -      -      -     0.05    -      -      -     0.62   0.33    -     andq	$3, %r8
+ -      -     0.33   0.02    -      -      -     0.03   0.62    -     cmpq	$3, %rcx
+ -      -      -      -     0.31   0.33   1.00    -      -     0.36   movq	%rax, -48(%rsp)
+ -      -      -      -     0.63    -     1.00    -      -     0.37   movq	%rcx, -56(%rsp)
+ -      -      -      -      -     0.01   1.00    -      -     0.99   movq	%rdi, -64(%rsp)
+ -      -      -      -      -     0.02   1.00    -      -     0.98   movq	%r8, -72(%rsp)
+ -      -      -      -     0.32   0.32   1.00    -      -     0.36   movq	%rsi, -80(%rsp)
+ -      -     0.97    -      -      -      -      -     0.03    -     jb	.LBB0_5
+ -      -      -      -      -      -      -      -      -      -     xorl	%eax, %eax
+ -      -     0.04   0.63    -      -      -     0.33    -      -     movl	%eax, %ecx
+ -      -      -      -     0.62   0.38    -      -      -      -     movq	-64(%rsp), %rdx
+ -      -      -      -     0.35   0.65    -      -      -      -     movq	-72(%rsp), %rsi
+ -      -     0.02   0.31    -      -      -     0.34   0.33    -     subq	%rsi, %rdx
+ -      -      -      -     0.32    -     1.00    -      -     0.68   movq	%rcx, -88(%rsp)
+ -      -      -      -      -     0.01   1.00    -      -     0.99   movq	%rdx, -96(%rsp)
+ -      -      -      -     0.33   0.67    -      -      -      -     movq	-96(%rsp), %rax
+ -      -      -      -     0.66   0.34    -      -      -      -     movq	-88(%rsp), %rcx
+ -      -     0.32   0.33    -      -      -     0.02   0.33    -     movq	%rcx, %rdx
+ -      -     0.96    -      -      -      -      -     0.04    -     shlq	$8, %rdx
+ -      -      -      -     0.35   0.65    -      -      -      -     movq	-8(%rsp), %rsi
+ -      -     0.02   0.65    -      -      -     0.31   0.02    -     addq	%rdx, %rsi
+ -      -      -      -     0.65   0.35    -      -      -      -     movq	-48(%rsp), %rdx
+ -      -     0.04    -      -      -      -      -     0.96    -     shlq	$2, %rdx
+ -      -     0.02   0.65    -      -      -     0.31   0.02    -     addq	%rdx, %rsi
+ -      -      -      -     0.06   0.94    -      -      -      -     movl	(%rsi), %edi
+ -      -      -      -     0.35   0.65    -      -      -      -     movq	-48(%rsp), %rdx
+ -      -     0.98    -      -      -      -      -     0.02    -     shlq	$8, %rdx
+ -      -      -      -     0.65   0.35    -      -      -      -     movq	-8(%rsp), %r8
+ -      -     0.02   0.31    -      -      -     0.34   0.33    -     addq	%rdx, %r8
+ -      -     0.33   0.02    -      -      -     0.33   0.32    -     movq	%rcx, %rdx
+ -      -     0.33    -      -      -      -      -     0.67    -     shlq	$2, %rdx
+ -      -      -     0.65    -      -      -     0.33   0.02    -     addq	%rdx, %r8
+ -      -      -      -     0.36   0.64    -      -      -      -     movl	(%r8), %r9d
+ -      -      -      -     0.02   0.01   1.00    -      -     0.97   movl	%r9d, (%rsi)
+ -      -      -      -     0.31   0.02   1.00    -      -     0.67   movl	%edi, (%r8)
+ -      -     0.33   0.02    -      -      -     0.32   0.33    -     movq	%rcx, %rdx
+ -      -      -     0.32    -      -      -     0.68    -      -     orq	$1, %rdx
+ -      -      -     0.31    -      -      -     0.69    -      -     movq	%rdx, %rsi
+ -      -     0.67    -      -      -      -      -     0.33    -     shlq	$8, %rsi
+ -      -      -      -     0.04   0.96    -      -      -      -     movq	-8(%rsp), %r8
+ -      -     0.02   0.65    -      -      -     0.33    -      -     addq	%rsi, %r8
+ -      -      -      -     0.65   0.35    -      -      -      -     movq	-48(%rsp), %rsi
+ -      -     0.62    -      -      -      -      -     0.38    -     shlq	$2, %rsi
+ -      -      -     0.34    -      -      -     0.66    -      -     addq	%rsi, %r8
+ -      -      -      -     0.05   0.95    -      -      -      -     movl	(%r8), %edi
+ -      -      -      -     0.35   0.65    -      -      -      -     movq	-48(%rsp), %rsi
+ -      -     0.69    -      -      -      -      -     0.31    -     shlq	$8, %rsi
+ -      -      -      -     0.65   0.35    -      -      -      -     movq	-8(%rsp), %r10
+ -      -      -     0.37    -      -      -     0.31   0.32    -     addq	%rsi, %r10
+ -      -     0.32    -      -      -      -      -     0.68    -     shlq	$2, %rdx
+ -      -      -     0.03    -      -      -     0.66   0.31    -     addq	%rdx, %r10
+ -      -      -      -     0.98   0.02    -      -      -      -     movl	(%r10), %r9d
+ -      -      -      -     0.63   0.01   1.00    -      -     0.36   movl	%r9d, (%r8)
+ -      -      -      -     0.01    -     1.00    -      -     0.99   movl	%edi, (%r10)
+ -      -     0.32   0.03    -      -      -     0.33   0.32    -     movq	%rcx, %rdx
+ -      -      -     0.36    -      -      -     0.64    -      -     orq	$2, %rdx
+ -      -     0.01   0.03    -      -      -     0.34   0.62    -     movq	%rdx, %rsi
+ -      -     0.99    -      -      -      -      -     0.01    -     shlq	$8, %rsi
+ -      -      -      -     0.36   0.64    -      -      -      -     movq	-8(%rsp), %r8
+ -      -     0.02   0.97    -      -      -     0.01    -      -     addq	%rsi, %r8
+ -      -      -      -     0.64   0.36    -      -      -      -     movq	-48(%rsp), %rsi
+ -      -     0.33    -      -      -      -      -     0.67    -     shlq	$2, %rsi
+ -      -      -     0.96    -      -      -     0.04    -      -     addq	%rsi, %r8
+ -      -      -      -     0.34   0.66    -      -      -      -     movl	(%r8), %edi
+ -      -      -      -     0.97   0.03    -      -      -      -     movq	-48(%rsp), %rsi
+ -      -     0.96    -      -      -      -      -     0.04    -     shlq	$8, %rsi
+ -      -      -      -     0.33   0.67    -      -      -      -     movq	-8(%rsp), %r10
+ -      -     0.01   0.35    -      -      -     0.63   0.01    -     addq	%rsi, %r10
+ -      -     0.33    -      -      -      -      -     0.67    -     shlq	$2, %rdx
+ -      -      -     0.04    -      -      -     0.64   0.32    -     addq	%rdx, %r10
+ -      -      -      -     0.33   0.67    -      -      -      -     movl	(%r10), %r9d
+ -      -      -      -      -      -     1.00    -      -     1.00   movl	%r9d, (%r8)
+ -      -      -      -      -     0.02   1.00    -      -     0.98   movl	%edi, (%r10)
+ -      -     0.31   0.66    -      -      -     0.03    -      -     movq	%rcx, %rdx
+ -      -     0.33   0.01    -      -      -     0.34   0.32    -     orq	$3, %rdx
+ -      -     0.02    -      -      -      -     0.97   0.01    -     movq	%rdx, %rsi
+ -      -     0.03    -      -      -      -      -     0.97    -     shlq	$8, %rsi
+ -      -      -      -     0.37   0.63    -      -      -      -     movq	-8(%rsp), %r8
+ -      -     0.02   0.32    -      -      -     0.03   0.63    -     addq	%rsi, %r8
+ -      -      -      -     0.32   0.68    -      -      -      -     movq	-48(%rsp), %rsi
+ -      -     0.34    -      -      -      -      -     0.66    -     shlq	$2, %rsi
+ -      -      -     0.01    -      -      -     0.99    -      -     addq	%rsi, %r8
+ -      -      -      -     0.34   0.66    -      -      -      -     movl	(%r8), %edi
+ -      -      -      -     0.32   0.68    -      -      -      -     movq	-48(%rsp), %rsi
+ -      -     0.66    -      -      -      -      -     0.34    -     shlq	$8, %rsi
+ -      -      -      -     0.65   0.35    -      -      -      -     movq	-8(%rsp), %r10
+ -      -     0.01   0.97    -      -      -     0.02    -      -     addq	%rsi, %r10
+ -      -     0.66    -      -      -      -      -     0.34    -     shlq	$2, %rdx
+ -      -      -     0.02    -      -      -     0.66   0.32    -     addq	%rdx, %r10
+ -      -      -      -     0.34   0.66    -      -      -      -     movl	(%r10), %r9d
+ -      -      -      -     0.32    -     1.00    -      -     0.68   movl	%r9d, (%r8)
+ -      -      -      -      -      -     1.00    -      -     1.00   movl	%edi, (%r10)
+ -      -      -     0.65    -      -      -     0.35    -      -     addq	$4, %rcx
+ -      -     0.01   0.04    -      -      -     0.33   0.62    -     addq	$-4, %rax
+ -      -      -     0.66    -      -      -     0.34    -      -     cmpq	$0, %rax
+ -      -     0.96    -      -      -      -     0.02   0.02    -     movq	%rcx, %rdx
+ -      -      -      -      -     0.02   1.00    -      -     0.98   movq	%rax, -96(%rsp)
+ -      -      -      -     0.01    -     1.00    -      -     0.99   movq	%rdx, -88(%rsp)
+ -      -      -      -      -      -     1.00    -      -     1.00   movq	%rcx, -80(%rsp)
+ -      -     0.95    -      -      -      -      -     0.05    -     jne	.LBB0_4
+ -      -      -      -     0.35   0.65    -      -      -      -     movq	-80(%rsp), %rax
+ -      -      -      -     0.34   0.66    -      -      -      -     movq	-72(%rsp), %rcx
+ -      -     0.01   0.66    -      -      -     0.32   0.01    -     cmpq	$0, %rcx
+ -      -      -      -      -     0.03   1.00    -      -     0.97   movq	%rax, -104(%rsp)
+ -      -      -      -     0.32    -     1.00    -      -     0.68   movq	%rcx, -112(%rsp)
+ -      -     0.34    -      -      -      -      -     0.66    -     je	.LBB0_7
+ -      -      -      -     0.96   0.04    -      -      -      -     movq	-112(%rsp), %rax
+ -      -      -      -     0.37   0.63    -      -      -      -     movq	-104(%rsp), %rcx
+ -      -     0.31   0.02    -      -      -     0.36   0.31    -     movq	%rcx, %rdx
+ -      -     0.34    -      -      -      -      -     0.66    -     shlq	$8, %rdx
+ -      -      -      -     0.36   0.64    -      -      -      -     movq	-8(%rsp), %rsi
+ -      -      -     0.65    -      -      -     0.34   0.01    -     addq	%rdx, %rsi
+ -      -      -      -     0.64   0.36    -      -      -      -     movq	-48(%rsp), %rdx
+ -      -     0.36    -      -      -      -      -     0.64    -     shlq	$2, %rdx
+ -      -      -     0.65    -      -      -     0.35    -      -     addq	%rdx, %rsi
+ -      -      -      -     0.36   0.64    -      -      -      -     movl	(%rsi), %edi
+ -      -      -      -     0.35   0.65    -      -      -      -     movq	-48(%rsp), %rdx
+ -      -     0.64    -      -      -      -      -     0.36    -     shlq	$8, %rdx
+ -      -      -      -     0.67   0.33    -      -      -      -     movq	-8(%rsp), %r8
+ -      -     0.62   0.36    -      -      -     0.02    -      -     addq	%rdx, %r8
+ -      -     0.02   0.36    -      -      -     0.62    -      -     movq	%rcx, %rdx
+ -      -     0.66    -      -      -      -      -     0.34    -     shlq	$2, %rdx
+ -      -      -     0.32    -      -      -     0.66   0.02    -     addq	%rdx, %r8
+ -      -      -      -     0.37   0.63    -      -      -      -     movl	(%r8), %r9d
+ -      -      -      -      -      -     1.00    -      -     1.00   movl	%r9d, (%rsi)
+ -      -      -      -     0.31   0.01   1.00    -      -     0.68   movl	%edi, (%r8)
+ -      -     0.35   0.62    -      -      -     0.01   0.02    -     addq	$1, %rcx
+ -      -     0.34   0.32    -      -      -     0.34    -      -     addq	$-1, %rax
+ -      -      -      -      -      -      -     0.66   0.34    -     cmpq	$0, %rax
+ -      -      -      -     0.01   0.34   1.00    -      -     0.65   movq	%rax, -112(%rsp)
+ -      -      -      -     0.32   0.31   1.00    -      -     0.37   movq	%rcx, -104(%rsp)
+ -      -     0.34    -      -      -      -      -     0.66    -     jne	.LBB0_6
+ -      -      -      -     0.64   0.36    -      -      -      -     movq	-48(%rsp), %rax
+ -      -     0.65   0.01    -      -      -     0.02   0.32    -     addq	$1, %rax
+ -      -      -      -     0.66   0.34    -      -      -      -     movq	-56(%rsp), %rcx
+ -      -     0.03   0.35    -      -      -     0.32   0.30    -     addq	$1, %rcx
+ -      -      -      -     0.34   0.66    -      -      -      -     movq	-24(%rsp), %rdx
+ -      -     0.02   0.63    -      -      -     0.32   0.03    -     cmpq	%rdx, %rax
+ -      -      -      -     0.01   0.01   1.00    -      -     0.98   movq	%rcx, -32(%rsp)
+ -      -      -      -     0.33    -     1.00    -      -     0.67   movq	%rax, -40(%rsp)
+ -      -     0.32    -      -      -      -      -     0.68    -     jne	.LBB0_2
+ -      -     0.02   0.63   0.66   0.34    -     0.35   1.00    -     retq
