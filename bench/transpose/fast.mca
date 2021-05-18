@@ -1,12 +1,12 @@
 Iterations:        100
-Instructions:      7500
-Total Cycles:      3924
-Total uOps:        10800
+Instructions:      7000
+Total Cycles:      5105
+Total uOps:        10300
 
 Dispatch Width:    6
-uOps Per Cycle:    2.75
-IPC:               1.91
-Block RThroughput: 18.0
+uOps Per Cycle:    2.02
+IPC:               1.37
+Block RThroughput: 17.2
 
 
 Instruction Info:
@@ -23,70 +23,65 @@ Instruction Info:
  1      1     0.25                        cmpl	$2, %esi
  1      1     0.50                        jl	.LBB0_10
  1      1     0.25                        movl	%esi, %r8d
- 1      1     0.25                        movl	$1, %edx
+ 1      1     0.50                        leaq	256(%rdi), %r10
+ 1      1     0.25                        movl	$1, %r11d
  1      0     0.17                        xorl	%r9d, %r9d
- 1      3     1.00                        vpbroadcastq	%rdi, %ymm0
- 1      1     0.50                        leaq	512(%rdi), %r10
- 1      1     0.50                        leaq	4(%rdi), %r11
+ 1      6     0.50    *                   vmovdqa	.LCPI0_0(%rip), %xmm0
+ 1      3     1.00                        vpbroadcastq	%rdi, %ymm1
+ 1      1     0.25                        addq	$4, %rdi
  1      1     0.50                        jmp	.LBB0_2
- 1      1     0.25                        addq	$1, %rdx
- 1      1     0.25                        addq	$512, %r10
- 1      1     0.25                        addq	$4, %r11
- 1      1     0.25                        cmpq	%r8, %rdx
+ 1      1     0.25                        incq	%r11
+ 1      1     0.25                        addq	$256, %r10
+ 1      1     0.25                        addq	$4, %rdi
+ 1      1     0.25                        cmpq	%r8, %r11
  1      1     0.50                        je	.LBB0_10
- 1      1     0.25                        cmpq	$3, %r9
- 1      1     0.50                        leaq	1(%r9), %r9
+ 1      1     0.25                        movq	%r9, %rax
+ 1      1     0.25                        incq	%r9
+ 1      1     0.25                        cmpq	$3, %rax
  1      1     0.50                        jae	.LBB0_4
  1      0     0.17                        xorl	%eax, %eax
  1      1     0.50                        jmp	.LBB0_6
- 1      1     0.25                        movq	%rdx, %rcx
- 1      1     0.25                        andq	$-4, %rcx
+ 1      1     0.25                        movq	%r11, %rdx
+ 1      1     0.25                        andq	$-4, %rdx
  1      0     0.17                        xorl	%eax, %eax
- 1      1     0.50                        leaq	1(%rax), %rsi
- 1      1     0.50                        leaq	2(%rax), %rdi
- 1      1     0.50                        leaq	3(%rax), %rbx
- 1      1     1.00                        vmovq	%rbx, %xmm1
- 1      1     1.00                        vmovq	%rdi, %xmm2
- 1      1     1.00                        vpunpcklqdq	%xmm1, %xmm2, %xmm1
- 1      1     1.00                        vmovq	%rax, %xmm2
- 1      1     1.00                        vmovq	%rsi, %xmm3
- 1      1     1.00                        vpunpcklqdq	%xmm3, %xmm2, %xmm2
- 1      3     1.00                        vinserti128	$1, %xmm1, %ymm2, %ymm1
- 1      1     0.50                        vpsllq	$9, %ymm1, %ymm2
- 1      3     1.00                        vpbroadcastq	%rdx, %ymm3
- 1      1     0.50                        vpsllq	$2, %ymm3, %ymm4
- 1      1     0.33                        vpaddq	%ymm4, %ymm0, %ymm4
- 1      1     0.33                        vpaddq	%ymm4, %ymm2, %ymm2
- 1      1     0.50                        vpsllq	$2, %ymm1, %ymm1
- 1      1     0.50                        vpsllq	$9, %ymm3, %ymm3
- 1      1     0.33                        vpaddq	%ymm3, %ymm0, %ymm3
- 1      1     0.33                        vpaddq	%ymm1, %ymm3, %ymm1
+ 1      1     1.00                        vpbroadcastd	%eax, %xmm2
+ 1      1     0.33                        vpor	%xmm0, %xmm2, %xmm2
+ 1      3     1.00                        vpmovsxdq	%xmm2, %ymm2
+ 1      1     0.50                        vpsllq	$8, %ymm2, %ymm3
+ 1      3     1.00                        vpbroadcastq	%r11, %ymm4
+ 1      1     0.50                        vpsllq	$2, %ymm4, %ymm5
+ 1      1     0.33                        vpaddq	%ymm5, %ymm1, %ymm5
+ 1      1     0.33                        vpaddq	%ymm5, %ymm3, %ymm3
+ 1      1     0.50                        vpsllq	$8, %ymm4, %ymm4
+ 1      1     0.33                        vpaddq	%ymm4, %ymm1, %ymm4
+ 1      1     0.50                        vpsllq	$2, %ymm2, %ymm2
+ 1      1     0.33                        vpaddq	%ymm2, %ymm4, %ymm2
  1      1     1.00                        kxnorw	%k0, %k0, %k1
- 5      20    1.00    *                   vpgatherqd	(,%ymm2), %xmm3 {%k1}
+ 5      20    1.00    *                   vpgatherqd	(,%ymm3), %xmm4 {%k1}
  1      1     1.00                        kxnorw	%k0, %k0, %k1
- 5      20    1.00    *                   vpgatherqd	(,%ymm1), %xmm4 {%k1}
- 1      1     1.00                        kxnorw	%k0, %k0, %k1
- 8      8     2.00           *            vpscatterqd	%xmm3, (,%ymm1) {%k1}
+ 5      20    1.00    *                   vpgatherqd	(,%ymm2), %xmm5 {%k1}
  1      1     1.00                        kxnorw	%k0, %k0, %k1
  8      8     2.00           *            vpscatterqd	%xmm4, (,%ymm2) {%k1}
+ 1      1     1.00                        kxnorw	%k0, %k0, %k1
+ 8      8     2.00           *            vpscatterqd	%xmm5, (,%ymm3) {%k1}
  1      1     0.25                        addq	$4, %rax
- 1      1     0.25                        cmpq	%rax, %rcx
+ 1      1     0.25                        cmpq	%rax, %rdx
  1      1     0.50                        jne	.LBB0_5
  1      1     0.25                        testb	$3, %r9b
  1      1     0.50                        je	.LBB0_9
- 1      1     0.25                        movl	%edx, %ecx
- 1      1     0.25                        andl	$3, %ecx
- 1      1     0.50                        leaq	(%r10,%rax,4), %rsi
- 1      1     0.50                        shlq	$9, %rax
- 1      1     0.25                        addq	%r11, %rax
- 1      0     0.17                        xorl	%edi, %edi
+ 1      1     0.25                        movl	%r11d, %edx
+ 1      1     0.25                        andl	$3, %edx
+ 1      1     0.50                        leaq	(%r10,%rax,4), %rcx
+ 1      1     0.50                        shlq	$8, %rax
+ 1      1     0.25                        addq	%rdi, %rax
+ 1      0     0.17                        xorl	%esi, %esi
  1      5     0.50    *                   movl	(%rax), %ebx
- 1      5     0.50    *                   movl	(%rsi,%rdi,4), %ebp
+ 1      5     0.50    *                   movl	(%rcx,%rsi,4), %ebp
  1      1     1.00           *            movl	%ebp, (%rax)
- 1      1     1.00           *            movl	%ebx, (%rsi,%rdi,4)
- 1      1     0.25                        addq	$1, %rdi
- 1      1     0.25                        addq	$512, %rax
- 1      1     0.25                        cmpq	%rdi, %rcx
+ 1      1     1.00           *            movl	%ebx, (%rcx,%rsi,4)
+ 1      1     0.25                        incq	%rsi
+ 1      1     0.25                        addq	$256, %rax
+ 1      1     0.25                        cmpq	%rsi, %rdx
  1      1     0.50                        jne	.LBB0_8
  1      1     0.50                        jmp	.LBB0_9
  2      6     0.50    *                   popq	%rbx
@@ -110,82 +105,77 @@ Resources:
 
 Resource pressure per iteration:
 [0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
- -      -     19.99  16.04  5.01   6.00   8.00   23.97  17.00  5.99   
+ -      -     20.96  16.97  6.00   6.01   8.00   16.09  16.98  5.99   
 
 Resource pressure by instruction:
 [0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
- -      -      -     0.01    -      -     1.00    -     0.99   1.00   pushq	%rbp
- -      -      -      -      -     0.01   1.00   0.01   0.99   0.99   pushq	%rbx
- -      -     0.01   0.96    -      -      -     0.03    -      -     cmpl	$2, %esi
- -      -     0.99    -      -      -      -      -     0.01    -     jl	.LBB0_10
- -      -     0.96   0.02    -      -      -     0.01   0.01    -     movl	%esi, %r8d
- -      -     0.01   0.97    -      -      -     0.02    -      -     movl	$1, %edx
+ -      -      -     0.02    -     0.01   1.00   0.97   0.01   0.99   pushq	%rbp
+ -      -      -     0.01    -     0.01   1.00   0.97   0.02   0.99   pushq	%rbx
+ -      -     0.02   0.96    -      -      -     0.02    -      -     cmpl	$2, %esi
+ -      -     0.04    -      -      -      -      -     0.96    -     jl	.LBB0_10
+ -      -     0.97   0.01    -      -      -     0.02    -      -     movl	%esi, %r8d
+ -      -      -     0.99    -      -      -     0.01    -      -     leaq	256(%rdi), %r10
+ -      -     0.01    -      -      -      -     0.97   0.02    -     movl	$1, %r11d
  -      -      -      -      -      -      -      -      -      -     xorl	%r9d, %r9d
- -      -      -      -      -      -      -     1.00    -      -     vpbroadcastq	%rdi, %ymm0
- -      -      -     0.99    -      -      -     0.01    -      -     leaq	512(%rdi), %r10
- -      -      -     0.98    -      -      -     0.02    -      -     leaq	4(%rdi), %r11
+ -      -      -      -     0.02   0.98    -      -      -      -     vmovdqa	.LCPI0_0(%rip), %xmm0
+ -      -      -      -      -      -      -     1.00    -      -     vpbroadcastq	%rdi, %ymm1
+ -      -     0.97   0.03    -      -      -      -      -      -     addq	$4, %rdi
  -      -     0.02    -      -      -      -      -     0.98    -     jmp	.LBB0_2
- -      -     0.96   0.01    -      -      -      -     0.03    -     addq	$1, %rdx
- -      -     0.01   0.01    -      -      -     0.02   0.96    -     addq	$512, %r10
- -      -      -      -      -      -      -     0.97   0.03    -     addq	$4, %r11
- -      -     0.02    -      -      -      -     0.98    -      -     cmpq	%r8, %rdx
+ -      -     0.96   0.01    -      -      -     0.01   0.02    -     incq	%r11
+ -      -     0.01   0.02    -      -      -     0.01   0.96    -     addq	$256, %r10
+ -      -     0.02   0.97    -      -      -      -     0.01    -     addq	$4, %rdi
+ -      -     0.97    -      -      -      -     0.01   0.02    -     cmpq	%r8, %r11
  -      -     0.98    -      -      -      -      -     0.02    -     je	.LBB0_10
- -      -     0.97   0.02    -      -      -      -     0.01    -     cmpq	$3, %r9
- -      -      -     0.98    -      -      -     0.02    -      -     leaq	1(%r9), %r9
- -      -     0.02    -      -      -      -      -     0.98    -     jae	.LBB0_4
+ -      -      -     0.02    -      -      -     0.01   0.97    -     movq	%r9, %rax
+ -      -     0.01   0.01    -      -      -     0.97   0.01    -     incq	%r9
+ -      -      -     0.02    -      -      -     0.02   0.96    -     cmpq	$3, %rax
+ -      -     0.01    -      -      -      -      -     0.99    -     jae	.LBB0_4
  -      -      -      -      -      -      -      -      -      -     xorl	%eax, %eax
- -      -     1.00    -      -      -      -      -      -      -     jmp	.LBB0_6
- -      -      -     0.02    -      -      -     0.97   0.01    -     movq	%rdx, %rcx
- -      -      -      -      -      -      -     0.02   0.98    -     andq	$-4, %rcx
+ -      -     0.99    -      -      -      -      -     0.01    -     jmp	.LBB0_6
+ -      -      -     0.98    -      -      -     0.02    -      -     movq	%r11, %rdx
+ -      -      -     0.01    -      -      -     0.98   0.01    -     andq	$-4, %rdx
  -      -      -      -      -      -      -      -      -      -     xorl	%eax, %eax
- -      -      -     0.98    -      -      -     0.02    -      -     leaq	1(%rax), %rsi
- -      -      -     1.00    -      -      -      -      -      -     leaq	2(%rax), %rdi
- -      -      -      -      -      -      -     1.00    -      -     leaq	3(%rax), %rbx
- -      -      -      -      -      -      -     1.00    -      -     vmovq	%rbx, %xmm1
- -      -      -      -      -      -      -     1.00    -      -     vmovq	%rdi, %xmm2
- -      -      -      -      -      -      -     1.00    -      -     vpunpcklqdq	%xmm1, %xmm2, %xmm1
- -      -      -      -      -      -      -     1.00    -      -     vmovq	%rax, %xmm2
- -      -      -      -      -      -      -     1.00    -      -     vmovq	%rsi, %xmm3
- -      -      -      -      -      -      -     1.00    -      -     vpunpcklqdq	%xmm3, %xmm2, %xmm2
- -      -      -      -      -      -      -     1.00    -      -     vinserti128	$1, %xmm1, %ymm2, %ymm1
- -      -      -     1.00    -      -      -      -      -      -     vpsllq	$9, %ymm1, %ymm2
- -      -      -      -      -      -      -     1.00    -      -     vpbroadcastq	%rdx, %ymm3
- -      -      -     1.00    -      -      -      -      -      -     vpsllq	$2, %ymm3, %ymm4
- -      -      -     0.02    -      -      -     0.98    -      -     vpaddq	%ymm4, %ymm0, %ymm4
- -      -      -     0.01    -      -      -     0.99    -      -     vpaddq	%ymm4, %ymm2, %ymm2
- -      -     1.00    -      -      -      -      -      -      -     vpsllq	$2, %ymm1, %ymm1
- -      -     1.00    -      -      -      -      -      -      -     vpsllq	$9, %ymm3, %ymm3
- -      -     0.01   0.99    -      -      -      -      -      -     vpaddq	%ymm3, %ymm0, %ymm3
- -      -     0.01   0.98    -      -      -     0.01    -      -     vpaddq	%ymm1, %ymm3, %ymm1
+ -      -      -      -      -      -      -     1.00    -      -     vpbroadcastd	%eax, %xmm2
+ -      -      -     1.00    -      -      -      -      -      -     vpor	%xmm0, %xmm2, %xmm2
+ -      -      -      -      -      -      -     1.00    -      -     vpmovsxdq	%xmm2, %ymm2
+ -      -     0.02   0.98    -      -      -      -      -      -     vpsllq	$8, %ymm2, %ymm3
+ -      -      -      -      -      -      -     1.00    -      -     vpbroadcastq	%r11, %ymm4
+ -      -      -     1.00    -      -      -      -      -      -     vpsllq	$2, %ymm4, %ymm5
+ -      -      -     0.02    -      -      -     0.98    -      -     vpaddq	%ymm5, %ymm1, %ymm5
+ -      -     0.02   0.97    -      -      -     0.01    -      -     vpaddq	%ymm5, %ymm3, %ymm3
+ -      -     0.99   0.01    -      -      -      -      -      -     vpsllq	$8, %ymm4, %ymm4
+ -      -     0.01   0.96    -      -      -     0.03    -      -     vpaddq	%ymm4, %ymm1, %ymm4
+ -      -     0.97   0.03    -      -      -      -      -      -     vpsllq	$2, %ymm2, %ymm2
+ -      -     0.97    -      -      -      -     0.03    -      -     vpaddq	%ymm2, %ymm4, %ymm2
  -      -     1.00    -      -      -      -      -      -      -     kxnorw	%k0, %k0, %k1
- -      -     1.00   0.98   2.00    -      -     1.00   0.02    -     vpgatherqd	(,%ymm2), %xmm3 {%k1}
+ -      -     1.00   1.00   0.02   1.98    -     0.01   0.99    -     vpgatherqd	(,%ymm3), %xmm4 {%k1}
  -      -     1.00    -      -      -      -      -      -      -     kxnorw	%k0, %k0, %k1
- -      -     1.00   0.98    -     2.00    -     0.02   1.00    -     vpgatherqd	(,%ymm1), %xmm4 {%k1}
+ -      -     1.00   0.96   1.98   0.02    -     1.00   0.04    -     vpgatherqd	(,%ymm2), %xmm5 {%k1}
  -      -     1.00    -      -      -      -      -      -      -     kxnorw	%k0, %k0, %k1
- -      -     1.00   0.04    -      -     2.00   1.00   1.96   2.00   vpscatterqd	%xmm3, (,%ymm1) {%k1}
+ -      -     1.00   0.06    -      -     2.00   1.00   1.94   2.00   vpscatterqd	%xmm4, (,%ymm2) {%k1}
  -      -     1.00    -      -      -      -      -      -      -     kxnorw	%k0, %k0, %k1
- -      -     1.00   0.02    -      -     2.00   1.00   1.98   2.00   vpscatterqd	%xmm4, (,%ymm2) {%k1}
- -      -     0.01    -      -      -      -     0.97   0.02    -     addq	$4, %rax
- -      -      -      -      -      -      -     0.97   0.03    -     cmpq	%rax, %rcx
- -      -     0.01    -      -      -      -      -     0.99    -     jne	.LBB0_5
- -      -      -     1.00    -      -      -      -      -      -     testb	$3, %r9b
- -      -     0.99    -      -      -      -      -     0.01    -     je	.LBB0_9
- -      -     0.98   0.02    -      -      -      -      -      -     movl	%edx, %ecx
- -      -     0.02    -      -      -      -     0.98    -      -     andl	$3, %ecx
- -      -      -     1.00    -      -      -      -      -      -     leaq	(%r10,%rax,4), %rsi
- -      -     0.98    -      -      -      -      -     0.02    -     shlq	$9, %rax
- -      -      -     0.98    -      -      -      -     0.02    -     addq	%r11, %rax
- -      -      -      -      -      -      -      -      -      -     xorl	%edi, %edi
- -      -      -      -     0.01   0.99    -      -      -      -     movl	(%rax), %ebx
- -      -      -      -     1.00    -      -      -      -      -     movl	(%rsi,%rdi,4), %ebp
+ -      -     1.00   1.94    -      -     2.00   1.00   0.06   2.00   vpscatterqd	%xmm5, (,%ymm3) {%k1}
+ -      -      -      -      -      -      -      -     1.00    -     addq	$4, %rax
+ -      -      -     0.02    -      -      -      -     0.98    -     cmpq	%rax, %rdx
+ -      -      -      -      -      -      -      -     1.00    -     jne	.LBB0_5
+ -      -     0.01    -      -      -      -     0.99    -      -     testb	$3, %r9b
+ -      -     0.98    -      -      -      -      -     0.02    -     je	.LBB0_9
+ -      -     0.01   0.98    -      -      -     0.01    -      -     movl	%r11d, %edx
+ -      -      -     0.01    -      -      -     0.99    -      -     andl	$3, %edx
+ -      -      -     0.99    -      -      -     0.01    -      -     leaq	(%r10,%rax,4), %rcx
+ -      -     0.03    -      -      -      -      -     0.97    -     shlq	$8, %rax
+ -      -     0.98    -      -      -      -     0.01   0.01    -     addq	%rdi, %rax
+ -      -      -      -      -      -      -      -      -      -     xorl	%esi, %esi
+ -      -      -      -     0.99   0.01    -      -      -      -     movl	(%rax), %ebx
+ -      -      -      -     0.01   0.99    -      -      -      -     movl	(%rcx,%rsi,4), %ebp
  -      -      -      -      -     1.00   1.00    -      -      -     movl	%ebp, (%rax)
- -      -      -      -     1.00    -     1.00    -      -      -     movl	%ebx, (%rsi,%rdi,4)
- -      -      -     0.01    -      -      -     0.99    -      -     addq	$1, %rdi
- -      -     0.01   0.01    -      -      -     0.97   0.01    -     addq	$512, %rax
- -      -      -     0.01    -      -      -     0.01   0.98    -     cmpq	%rdi, %rcx
+ -      -      -      -     0.99    -     1.00    -      -     0.01   movl	%ebx, (%rcx,%rsi,4)
+ -      -     0.01   0.98    -      -      -      -     0.01    -     incq	%rsi
+ -      -     0.97    -      -      -      -     0.01   0.02    -     addq	$256, %rax
+ -      -      -     0.01    -      -      -     0.02   0.97    -     cmpq	%rsi, %rdx
  -      -      -      -      -      -      -      -     1.00    -     jne	.LBB0_8
  -      -     1.00    -      -      -      -      -      -      -     jmp	.LBB0_9
- -      -      -     0.02    -     1.00    -      -     0.98    -     popq	%rbx
- -      -     0.01    -     0.02   0.98    -     0.01   0.98    -     popq	%rbp
+ -      -      -     0.01   0.01   0.99    -     0.98   0.01    -     popq	%rbx
+ -      -     0.01    -     0.98   0.02    -      -     0.99    -     popq	%rbp
  -      -      -      -      -      -      -      -      -      -     vzeroupper
- -      -     0.01   0.02   0.98   0.02    -     0.97   1.00    -     retq
+ -      -      -     0.98   1.00    -      -     0.02   1.00    -     retq

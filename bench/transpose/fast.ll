@@ -4,7 +4,7 @@ declare <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*>, i32, <4 x i1>, <4 x i32>
 declare void @llvm.masked.scatter.v4i32(<4 x i32>, <4 x i32*>, i32, <4 x i1>)
 
 ; Function Attrs: nofree norecurse nounwind uwtable
-define dso_local void @complex_transpose([128 x i32]* nocapture %rA, i32 %n) local_unnamed_addr #0 {
+define dso_local void @transpose([64 x i32]* nocapture %rA, i32 %n) local_unnamed_addr #0 {
 entry:
   %cmp39 = icmp sgt i32 %n, 1
   br i1 %cmp39, label %for.cond1.preheader.preheader, label %for.end20
@@ -28,24 +28,17 @@ for.cond1.preheader.new:                          ; preds = %for.cond1.preheader
 for.body3:                                        ; preds = %for.body3, %for.cond1.preheader.new
   %indvars.iv = phi i64 [ 0, %for.cond1.preheader.new ], [ %indvars.iv.next.3, %for.body3 ]
   %niter = phi i64 [ %unroll_iter, %for.cond1.preheader.new ], [ %niter.nsub.3, %for.body3 ]
+  %indvars.iv.32 = trunc i64 %indvars.iv to i32
+  %indvars = insertelement <4 x i32> undef, i32 %indvars.iv.32, i32 0
+  %indvars.broadcast = shufflevector <4 x i32> %indvars, <4 x i32> undef, <4 x i32> <i32 0, i32 0, i32 0, i32 0>
+  %indvars.vec = or <4 x i32> %indvars.broadcast, <i32 0, i32 1, i32 2, i32 3>
 
-  %indvars.iv.next = or i64 %indvars.iv, 1
-  %indvars.iv.next.1 = or i64 %indvars.iv, 2
-  %indvars.iv.next.2 = or i64 %indvars.iv, 3
-
-  %indvars1 = insertelement <4 x i64> undef, i64 %indvars.iv, i32 0
-  %indvars2 = insertelement <4 x i64> %indvars1, i64 %indvars.iv.next, i32 1
-  %indvars3 = insertelement <4 x i64> %indvars2, i64 %indvars.iv.next.1, i32 2
-  %indvars.vec = insertelement <4 x i64> %indvars3, i64 %indvars.iv.next.2, i32 3
-
-  %arrayidx.ptr = getelementptr inbounds [128 x i32], [128 x i32]* %rA,  <4 x i64> %indvars.vec, i64 %indvars.iv41
-  %arrayidx2.ptr = getelementptr inbounds [128 x i32], [128 x i32]* %rA,  i64 %indvars.iv41, <4 x i64> %indvars.vec
-
-  %arrayidx = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx.ptr,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef)
-  %arrayidx2 = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx2.ptr, i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef)
-  call void @llvm.masked.scatter.v4i32(<4 x i32> %arrayidx, <4 x i32*> %arrayidx2.ptr,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>)
-  call void @llvm.masked.scatter.v4i32(<4 x i32> %arrayidx2, <4 x i32*> %arrayidx.ptr,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>)
-
+  %arrayidx.ptr.col = getelementptr inbounds [64 x i32], [64 x i32]* %rA,  <4 x i32> %indvars.vec, i64 %indvars.iv41
+  %arrayidx.ptr.row = getelementptr inbounds [64 x i32], [64 x i32]* %rA,  i64 %indvars.iv41, <4 x i32> %indvars.vec
+  %arrayidx = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx.ptr.col,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef), !tbaa !2
+  %arrayidx2 = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx.ptr.row, i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef), !tbaa !2
+  call void @llvm.masked.scatter.v4i32(<4 x i32> %arrayidx, <4 x i32*> %arrayidx.ptr.row,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>), !tbaa !2
+  call void @llvm.masked.scatter.v4i32(<4 x i32> %arrayidx2, <4 x i32*> %arrayidx.ptr.col,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>), !tbaa !2
   %indvars.iv.next.3 = add nuw nsw i64 %indvars.iv, 4
   %niter.nsub.3 = add i64 %niter, -4
   %niter.ncmp.3 = icmp eq i64 %niter.nsub.3, 0
@@ -59,9 +52,9 @@ for.inc18.unr-lcssa:                              ; preds = %for.body3, %for.con
 for.body3.epil:                                   ; preds = %for.inc18.unr-lcssa, %for.body3.epil
   %indvars.iv.epil = phi i64 [ %indvars.iv.next.epil, %for.body3.epil ], [ %indvars.iv.unr, %for.inc18.unr-lcssa ]
   %epil.iter = phi i64 [ %epil.iter.sub, %for.body3.epil ], [ %xtraiter, %for.inc18.unr-lcssa ]
-  %arrayidx5.epil = getelementptr inbounds [128 x i32], [128 x i32]* %rA, i64 %indvars.iv.epil, i64 %indvars.iv41
+  %arrayidx5.epil = getelementptr inbounds [64 x i32], [64 x i32]* %rA, i64 %indvars.iv.epil, i64 %indvars.iv41
   %2 = load i32, i32* %arrayidx5.epil, align 4, !tbaa !2
-  %arrayidx9.epil = getelementptr inbounds [128 x i32], [128 x i32]* %rA, i64 %indvars.iv41, i64 %indvars.iv.epil
+  %arrayidx9.epil = getelementptr inbounds [64 x i32], [64 x i32]* %rA, i64 %indvars.iv41, i64 %indvars.iv.epil
   %3 = load i32, i32* %arrayidx9.epil, align 4, !tbaa !2
   store i32 %3, i32* %arrayidx5.epil, align 4, !tbaa !2
   store i32 %2, i32* %arrayidx9.epil, align 4, !tbaa !2
@@ -93,4 +86,3 @@ for.end20:                                        ; preds = %for.inc18, %entry
 !5 = !{!"Simple C/C++ TBAA"}
 !6 = distinct !{!6, !7}
 !7 = !{!"llvm.loop.unroll.disable"}
-
