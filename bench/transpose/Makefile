@@ -18,7 +18,7 @@ slow.S: slow.ll
 slow.o: slow.S
 	clang -mavx512f -mavx512dq -mavx512bw -mavx512vbmi -mavx512vbmi2 -mavx512vl  slow.S -c -o slow.o
 
-bench: fast slow
+timing: fast slow
 	time ./fast
 	time ./slow
 

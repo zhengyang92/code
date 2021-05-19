@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     printf("Checksum before = %d\n", sum);
     printf("Matrix before: A[0][0] = %d, A[0][1] = %d, A[1][0] = %d, A[1][1] = %d\n", rA[0][0], rA[0][1], rA[1][0], rA[1][1]);
     for (int i = 0 ; i < 1000001; i ++)
-      transpose(rA, SIZE);
+      transpose((int **)rA, SIZE);
 
 
     sum = 0;
