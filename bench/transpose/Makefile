@@ -6,13 +6,17 @@ fast: fast.o driver.c fast.S
 slow: slow.o driver.c slow.S
 	clang driver.c slow.o -o slow
 
-fast.o: fast.ll
-	clang -O3 -mavx512f -mavx512dq -mavx512bw -mavx512vbmi -mavx512vbmi2 -mavx512vl  fast.ll -c -o fast.o
+fast.S: fast.ll
 	clang -O3 -mavx512f -mavx512dq -mavx512bw -mavx512vbmi -mavx512vbmi2 -mavx512vl  fast.ll -S -o fast.S
 
-slow.o: slow.ll
-	clang  -O3 -mavx512f -mavx512dq -mavx512bw -mavx512vbmi -mavx512vbmi2 -mavx512vl  slow.ll -c -o slow.o
+fast.o: fast.S
+	clang -mavx512f -mavx512dq -mavx512bw -mavx512vbmi -mavx512vbmi2 -mavx512vl fast.S -c -o fast.o
+
+slow.S: slow.ll
 	clang  -O3 -mavx512f -mavx512dq -mavx512bw -mavx512vbmi -mavx512vbmi2 -mavx512vl  slow.ll -S -o slow.S
+
+slow.o: slow.S
+	clang -mavx512f -mavx512dq -mavx512bw -mavx512vbmi -mavx512vbmi2 -mavx512vl  slow.S -c -o slow.o
 
 bench: fast slow
 	time ./fast

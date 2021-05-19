@@ -35,10 +35,10 @@ for.body3:                                        ; preds = %for.body3, %for.con
 
   %arrayidx.ptr.col = getelementptr inbounds [64 x i32], [64 x i32]* %rA,  <4 x i32> %indvars.vec, i64 %indvars.iv41
   %arrayidx.ptr.row = getelementptr inbounds [64 x i32], [64 x i32]* %rA,  i64 %indvars.iv41, <4 x i32> %indvars.vec
-  %arrayidx = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx.ptr.col,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef), !tbaa !2
-  %arrayidx2 = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx.ptr.row, i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef), !tbaa !2
-  call void @llvm.masked.scatter.v4i32(<4 x i32> %arrayidx, <4 x i32*> %arrayidx.ptr.row,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>), !tbaa !2
-  call void @llvm.masked.scatter.v4i32(<4 x i32> %arrayidx2, <4 x i32*> %arrayidx.ptr.col,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>), !tbaa !2
+  %cols = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx.ptr.col,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef), !tbaa !2
+  %rows = call <4 x i32> @llvm.masked.gather.v4i32(<4 x i32*> %arrayidx.ptr.row, i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>, <4 x i32> undef), !tbaa !2
+  call void @llvm.masked.scatter.v4i32(<4 x i32> %cols, <4 x i32*> %arrayidx.ptr.row,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>), !tbaa !2
+  call void @llvm.masked.scatter.v4i32(<4 x i32> %rows, <4 x i32*> %arrayidx.ptr.col,  i32 0, <4 x i1> <i1 true, i1 true, i1 true, i1 true>), !tbaa !2
   %indvars.iv.next.3 = add nuw nsw i64 %indvars.iv, 4
   %niter.nsub.3 = add i64 %niter, -4
   %niter.ncmp.3 = icmp eq i64 %niter.nsub.3, 0
