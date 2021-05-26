@@ -1,6 +1,6 @@
 
 #include "stdio.h"
-#define SIZE 64
+#define SIZE 512
 #define ENABLE_CHECKSUM
 int rA[SIZE][SIZE];
 
@@ -20,8 +20,18 @@ int main(int argc, char **argv)
     }
 
     printf("Checksum before = %d\n", sum);
-    printf("Matrix before: A[0][0] = %d, A[0][1] = %d, A[1][0] = %d, A[1][1] = %d\n", rA[0][0], rA[0][1], rA[1][0], rA[1][1]);
-    for (int i = 0 ; i < 1000001; i ++)
+
+
+    printf("Matrix before:\n");
+    for (int i = 0; i < 4; i ++) {
+      printf("  ");
+      for (int j = 0; j < 4; j ++) {
+        printf("%8d, ", rA[i][j]);
+      }
+      printf("\n");
+    }
+    //printf("Matrix before: A[0][0] = %d, A[0][1] = %d, A[1][0] = %d, A[1][1] = %d\n", rA[0][0], rA[0][1], rA[1][0], rA[1][1]);
+    for (int i = 0 ; i < 10001; i ++)
       transpose((int **)rA, SIZE);
 
 
@@ -29,7 +39,15 @@ int main(int argc, char **argv)
     for (i = 0; i < SIZE * SIZE; ++i)
       sum = sum + *((int *)rA + i);
     printf("Checksum  after = %d\n", sum);
-    printf("Matrix after: A[0][0] = %d, A[0][1] = %d, A[1][0] = %d, A[1][1] = %d\n", rA[0][0], rA[0][1], rA[1][0], rA[1][1]);
+
+    printf("Matrix after:\n");
+    for (int i = 0; i < 4; i ++) {
+      printf("  ");
+      for (int j = 0; j < 4; j ++) {
+        printf("%8d, ", rA[i][j]);
+      }
+      printf("\n");
+    }
 
     return 0;
 }
